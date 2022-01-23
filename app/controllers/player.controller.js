@@ -6,6 +6,7 @@ const LEVEL_BAR = 1000; // length of experience per level. Once experience reach
 
 // Create new player
 exports.create = (req, res) => {
+  console.log(req.body.username)
   if (!req.body.username || !req.body.email || !req.body.password) {
     res.status(400).json({
       result: "FAILED",
