@@ -8,8 +8,8 @@ import {
     Card
 } from 'react-bootstrap'
 
-class Create extends Component {
-    
+
+class Edit extends Component{
     constructor(props){
         super(props);
 
@@ -20,38 +20,19 @@ class Create extends Component {
             show: false,
             disable: false
         }
-        
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleInputChange(event){
-        const { name, value } = event.target;
-        console.log(event.target.value)
-        
-        this.setState({[name]: value,});
 
     }
-
-    handleChange(event) {
-        console.log("Username: " + event.target.value)
-        this.setState({
-          username: event.target.value,
-        });
-      }
-      
-
-    
 
     showPlayer(){
         if(this.state.show){
             return(
                 <Container className="col-4">
-                    <Card.Title>Created!</Card.Title>
+                    <Card.Title>Updated!</Card.Title>
                     <Card style={{ width: '18rem' }} className='rounded'>
                         <Card.Img variant="top" src="https://dummyimage.com/286x180/000/fff" />
-                        <Card.Body className='card bg-dark '>
+                        <Card.Body className='card bg-dark'>
                             <Card.Text>Username: {this.state.username}</Card.Text>
                             <Card.Text>Email: {this.state.email}</Card.Text>
                             <Card.Text>Experience: {this.state.experience}</Card.Text>
@@ -62,7 +43,14 @@ class Create extends Component {
             )
         }
     }
-
+    
+    handleInputChange(event){
+        event.preventDefault();
+        console.log(event.target.name + " :" + event.target.value)
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
     handleSubmit(event){
         event.preventDefault();
         this.setState({
@@ -73,10 +61,10 @@ class Create extends Component {
 
     render(){
         return(
-            <div>
+<div>
                 <Row>
                 <Container className='col-4'>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit} className='form-outline form-white'>
                         <Form.Group className="mb-3" >
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="text" 
@@ -98,6 +86,7 @@ class Create extends Component {
                         <Form.Group className="mb-3" >
                             <Form.Label>Experience</Form.Label> 
                             <Form.Select aria-label="Default select example" 
+                            className='form-control'
                             name="experience"
                             onChange={this.handleInputChange}
                             disabled={this.state.disable}>
@@ -107,7 +96,7 @@ class Create extends Component {
                                 <option value="Professional">Professional</option>
                             </Form.Select>
                         </Form.Group>
-                        <input type="submit" value="Submit" className=' btn btn-success'/>      
+                        <input type="submit" value="Submit" className='btn btn-success'/>      
                     </Form>
                 </Container>
                 
@@ -116,8 +105,8 @@ class Create extends Component {
                 </Row>
             </div>
         )
+        
     }
-
 }
 
-export default Create
+export default Edit;
