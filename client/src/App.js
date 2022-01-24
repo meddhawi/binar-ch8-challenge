@@ -9,6 +9,8 @@ import Navigation from './Navigation';
 import Create from './Player/Create';
 import Edit from './Player/Edit';
 import Home from './Home';
+import Search from './Player/Search';
+
 
 
 
@@ -20,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/create" element={<Create />}/>
           <Route path="/edit" element={<Edit />}/>
+          <Route path="/search" element={<Search />}/>
         </Routes>
     </div>
   );
