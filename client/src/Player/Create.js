@@ -21,10 +21,17 @@ class Create extends Component {
             disable: false
         }
         
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleChange2 = this.handleChange2.bind(this);
-        this.handleChange3 = this.handleChange3.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(event){
+        const { name, value } = event.target;
+        console.log(event.target.value)
+        
+        this.setState({[name]: value,});
+
     }
 
     handleChange(event) {
@@ -34,19 +41,6 @@ class Create extends Component {
         });
       }
       
-    handleChange2(event) {
-        console.log("email: " + event.target.value)
-        this.setState({
-          email: event.target.value,
-        });
-    }
-
-    handleChange3(event) {
-        console.log("XP: " + event.target.value)
-        this.setState({
-          experience: event.target.value,
-        });
-    }
 
     
 
@@ -86,22 +80,25 @@ class Create extends Component {
                             <Form.Label>Username</Form.Label>
                             <Form.Control type="text" 
                                 placeholder="Enter username"
+                                name="username"
                                 value={this.state.value}
-                                onChange={this.handleChange} 
+                                onChange = {this.handleInputChange} 
                                 disabled={this.state.disable}/>
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" 
                                 placeholder="Enter email"
+                                name="email"
                                 value={this.state.value}
-                                onChange={this.handleChange2} 
+                                onChange = {this.handleInputChange} 
                                 disabled={this.state.disable}/>
                         </Form.Group>    
                         <Form.Group className="mb-3" >
                             <Form.Label>Experience</Form.Label> 
                             <Form.Select aria-label="Default select example" 
-                            onChange={this.handleChange3}
+                            name="experience"
+                            onChange={this.handleInputChange}
                             disabled={this.state.disable}>
                                 <option>Choose difficulty</option>
                                 <option value="Beginner">Beginner</option>
